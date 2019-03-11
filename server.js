@@ -6,8 +6,8 @@ var moment = require('moment');
 mongoose.connect('mongodb://localhost/quotes', { useNewUrlParser: true });
 
 var QuoteSchema = new mongoose.Schema({
-    owner: String,
-    quote: String,
+    owner: {type: String, required: true, minlength: 3},
+    quote: {type: String, required: true, minlength: 3},
     created_at: Date
 })
 mongoose.model('Quote', QuoteSchema)
@@ -36,6 +36,7 @@ app.post('/new_quote', function(req, res) {
         if(err) {
             console.log(err)
             console.log("something went wrong")
+            return res.redirect("/");
         } else {
             console.log("successfully added a user!")
         }
@@ -44,7 +45,7 @@ app.post('/new_quote', function(req, res) {
 })
 
 app.get('/quotes', function(req, res) {
-    Quote.find({}, function(err, quotes){
+    Quote.find({}).sort({created_at: -1}).exec(function(err, quotes) {
         res.render("quotes", {quotes: quotes, moment:moment});
     })
 })
