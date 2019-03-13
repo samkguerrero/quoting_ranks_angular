@@ -9,16 +9,13 @@
 </head>
 <body>
 
-    <div style="margin-top: 25px; padding: 20px; border-radius: 25px; border: 3px solid #01579b;" class="container">
+    <div style="margin-top: 25px; padding: 20px; border-radius: 25px; border: 10px solid #fb8c00;" class="container orange lighten-2 ">
         <div style="text-align: center;">
-            <h2>Here are the awsome quotes!</h2>
+            <h2>All People</h2>
         </div>
         <ul>
-            <% for ( var x of quotes ) { %>
-                <li>
-                    <h4 class="grey-text text-darken-2">"<%= x.quote %>"</h4>
-                    <h4 class="blue-text text-darken-2" style="margin-left: 100px;">-<%= x.owner %> at <%= moment(x.created_at).format('h:mm a MMMM DD YYYY') %></h4>
-                </li>
+            <% for ( var x of peoples ) { %>
+                <p><%= x %></p>
             <% } %>
         </ul>
     </div>
