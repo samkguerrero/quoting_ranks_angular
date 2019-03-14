@@ -1,41 +1,46 @@
-const mongoose = require('mongoose')
-const moment = require('moment')
-
-require('../models/task.js')
-
-var Task = mongoose.model('Task')
+const Task = require('../models/task.js');
 
 module.exports = {
-    index: function(req, res) {
-        Task.find()
-            .then(tasks => res.send(tasks))
-            .catch(err => res.send(err));
-    },
-    getTask: function(req, res, id) {
-        Task.find({_id: id})
-            .then(task => res.send(task[0]))
-            .catch(err => res.send(err));
-    },
-    deleteTask: function(req, res, id) {
-        Task.find({_id: id}).deleteOne()
-            .then(data => res.send("Deleted"))
-            .catch(err => res.status(500).send(err))
-    },
-    create: function(req, res, name) {
-        var task = new Task({
-            title: req.body.title, 
-            description: req.body.description, 
-            completed: req.body.completed}).save()
-                .then(data => res.status(200).send("created task!"))
-                .catch(err => res.status(500).send(err))
-    },
-    updateTask: function(req, res, id) {
-        Task.update({_id: id}, {
-            title: req.body.title,
-            description: req.body.description,
-            completed: req.body.completed
-        })
-            .then(data => res.send(data))
-            .catch(err => res.status(500).send(err))
-    }
+
+  getAllTasks: (req, res) => {
+    Task.find()
+      .then(data => console.log(data) || res.json(data))
+      .catch(err => console.log(err) || res.json(err));
+  },
+
+  getTask: (req, res) => {
+    const ID = req.params.id;
+    Task.findOne({_id: ID})
+      .then(task => res.json(task))
+      .catch(err => res.json(err));
+  },
+  
+  deleteTask: (req, res) => {
+    const ID = req.params.id;
+    Task.findOneAndDelete({_id: ID})
+      .then(data => res.json(data))
+      .catch(err => res.json(err));
+  },
+  
+  create: (req, res) => {
+    const {title, description, completed} = req.body;
+    new Task({title:title, description:description, completed:completed})
+      .save()
+      .then(data => res.json(data))
+      .catch(err => res.json(err));
+  },
+
+  createTask: (req, res) => {
+    const DATA = req.body;
+    Task.create(DATA)
+      .then(data => res.json(data))
+      .catch(err => res.json(err));
+  },
+  
+  updateTask: (req, res) => {
+    const DATA = req.body;
+    Task.findOneAndUpdate({_id: id}, DATA, {runValidators:true, new:true})
+      .then(data => res.json(data))
+      .catch(err => res.json(err));
+  }
 }
