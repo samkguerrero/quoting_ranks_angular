@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-require('./server/config/mongoose.js');
+require('../config/mongoose.js');
 
 const TaskSchema = new mongoose.Schema({
     title: {

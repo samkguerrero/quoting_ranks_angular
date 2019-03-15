@@ -4,8 +4,10 @@ module.exports = {
 
   getAllTasks: (req, res) => {
     Task.find()
-      .then(data => console.log(data) || res.json(data))
-      .catch(err => console.log(err) || res.json(err));
+      // .then(data => console.log(data) || res.json(data))
+      // .catch(err => console.log(err) || res.json(err));
+      .then(data => res.json(data))
+      .catch(err => res.json(err));
   },
 
   getTask: (req, res) => {
