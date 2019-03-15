@@ -6,27 +6,23 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HttpService {
   constructor(private _http: HttpClient){
-    this.getTasks();
-    this.getTask();
-    this.deleteTask();
+    this.getPokemon();
+    this.getInteresting();
   }
-  getTasks(){
+  getPokemon(){
       // our http response is an Observable, store it in a variable
-      let tempObservable = this._http.get('/api/tasks');
+      let tempObservable = this._http.get('https://pokeapi.co/api/v2/pokemon/1/');
       // subscribe to the Observable and provide the code we would like to do with our data from the response
       tempObservable.subscribe(data => console.log("Got our tasks!", data));
   }
-  getTask(){
+  getInteresting(){
       // our http response is an Observable, store it in a variable
-      let tempObservable = this._http.get('/api/tasks/5c89564e0469da6cc6da185c');
+      let tempObservable = this._http.get('https://pokeapi.co/api/v2/pokemon/1/');
       // subscribe to the Observable and provide the code we would like to do with our data from the response
-      tempObservable.subscribe(data => console.log("Got our task!", data));
-  }
-  deleteTask(){
-      // our http response is an Observable, store it in a variable
-      let tempObservable = this._http.delete('/api/tasks/5c89564e0469da6cc6da185c');
-      // subscribe to the Observable and provide the code we would like to do with our data from the response
-      tempObservable.subscribe(data => console.log("deleted task!", data));
+      tempObservable.subscribe(data => console.log(`${data['name']}'s abilities are: ${data['abilities'][0]['ability']['name']} and ${data['abilities'][1]['ability']['name']}`));
+      tempObservable.subscribe(data => console.log(`${data['abilities'][1]['ability']['name']}`));
+      tempObservable.subscribe(data => this._http.get(`https://pokeapi.co/api/v2/ability/${data['abilities'][1]['ability']['name']}/?limit=20&offset=20`).subscribe(data => { console.log("Pokemon with the ability"); for (let i of data.pokemon) console.log(i.pokemon.name) }));
   }
 }
+
 
