@@ -1,17 +1,28 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 <div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-</div>
-<h2>Queried Task</h2>
-<div class="card-panel orange lighten-2">
-  <p>Title: {{ queried_task.title }}</p>
-  <p>Description: {{ queried_task.description }}</p>
+
 </div>
 <h2>All Tasks</h2>  
-<div class="card-panel teal lighten-2" *ngFor="let task of all_tasks" >
-  <p>title: {{ task.title }}</p>
-  <p>description: {{ task.description }}</p>
+<button (click)="onButtonClick()" >Click me!</button>
+<div>
+    <div class="card-panel teal lighten-2" *ngFor="let task of all_tasks" >
+      <p>title: {{ task.title }}</p>
+      <p>description: {{ task.description }}</p>
+      <button (click)="onButtonClickParam(task._id)">Show</button>
+    </div>
 </div>
+
+<div class="card-panel orange lighten-2" *ngIf="queried_task.title">
+    <p>{{ queried_task }}</p>
+    <p>{{ queried_task.title }}</p>
+    <p>{{ queried_task.description }}</p>
+</div>
+
+
+
+
+
+
+
+

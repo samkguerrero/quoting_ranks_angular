@@ -7,13 +7,13 @@ import { HttpClient } from '@angular/common/http';
 export class HttpService {
   constructor(private _http: HttpClient){
     this.getTasks();
-    this.getTask();
+    this.getTask('0');
   }
   getTasks(){
       return this._http.get('/api/tasks');
   }
-  getTask(){
-      return this._http.get('/api/tasks/5c896c7e227980b0441aef25');
+  getTask(id: String){
+      return this._http.get(`/api/tasks/${id}`);
   }
 }
 
