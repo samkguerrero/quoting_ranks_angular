@@ -14,13 +14,14 @@ export class AppComponent {
   all_tasks: object = [];
   queried_task: object = {};
   newTask: any;
+  editedTask: any;
 
   constructor(private _httpService: HttpService) {
-    _httpService.getTasks().subscribe(data => this.all_tasks = data)
   }
 
   ngOnInit(){
     this.newTask = {title: "", description: ""}
+    this.editedTask = {title: "", description: ""}
   }
 
   getAllTasks(): void { 
@@ -49,7 +50,7 @@ export class AppComponent {
   }
 
   editTask(id: String): void { 
-    this._httpService.getTask(id).subscribe(data => {this.queried_task = data; this.newTask = data })
+    this._httpService.getTask(id).subscribe(data => {this.queried_task = data; this.editedTask = data })
   }
 
 }

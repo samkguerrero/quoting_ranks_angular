@@ -5,10 +5,12 @@ import { HttpService } from './http.service';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { EdittaskComponent } from './edittask/edittask.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EdittaskComponent,
   ],
   imports: [
     BrowserModule,
