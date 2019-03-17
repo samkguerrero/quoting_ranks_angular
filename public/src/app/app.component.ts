@@ -13,21 +13,43 @@ export class AppComponent {
   title = 'Restful Tasks';
   all_tasks: object = [];
   queried_task: object = {};
+  newTask: any;
 
   constructor(private _httpService: HttpService) {
+    _httpService.getTasks().subscribe(data => this.all_tasks = data)
   }
 
-  onButtonClick(): void { 
-    console.log(`Click event is working`);
-    console.log(this)
+  ngOnInit(){
+    this.newTask = {title: "", description: ""}
+  }
+
+  getAllTasks(): void { 
     this._httpService.getTasks().subscribe(data => this.all_tasks = data)
-  } 
-
-  onButtonClickParam(id: String): void { 
-    console.log(`Click event is working with num param: ${id}`);
-    this._httpService.getTask(id).subscribe(data => this.queried_task = data)
   }
 
+  onSubmitCreate(){
+    let observable = this._httpService.addTask(this.newTask);
+    observable.subscribe(data => {
+      console.log("Got data from post back", data);
+      this.newTask = {title: "", description: ""}
+    })
+  }
 
+  onSubmitEdit(id: String){
+    let observable = this._httpService.updateTask(id,this.newTask);
+    observable.subscribe(data => {
+      this.newTask = {title: "", description: ""}
+      this.queried_task = {};
+      this.getAllTasks();
+    })
+  }
+
+  deleteTask(id: String): void { 
+    this._httpService.deleteTask(id).subscribe(data => console.log("data from delete:", data))
+  }
+
+  editTask(id: String): void { 
+    this._httpService.getTask(id).subscribe(data => {this.queried_task = data; this.newTask = data })
+  }
 
 }

@@ -1,22 +1,46 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<div style="text-align:center">
 
-</div>
-<h2>All Tasks</h2>  
-<button (click)="onButtonClick()" >Click me!</button>
-<div>
-    <div class="card-panel teal lighten-2" *ngFor="let task of all_tasks" >
-      <p>title: {{ task.title }}</p>
-      <p>description: {{ task.description }}</p>
-      <button (click)="onButtonClickParam(task._id)">Show</button>
+<div class="container">
+    <div style="width:50%" >
+      <h3>New Task</h3>
+      <form (submit)="onSubmitCreate()" class="card-panel yellow lighten-2">
+        <label for="title">Title</label>
+        <input type="text" name="newTask.title" [(ngModel)]="newTask.title" />
+        <label for="description">Description</label>
+        <input type="text" name="newTask.description" [(ngModel)]="newTask.description" />
+        <br>
+        <br>
+        <input class="btn teal darken-2" type="submit" value="create">
+      </form>
     </div>
-</div>
 
-<div class="card-panel orange lighten-2" *ngIf="queried_task.title">
-    <p>{{ queried_task }}</p>
-    <p>{{ queried_task.title }}</p>
-    <p>{{ queried_task.description }}</p>
+    <h3>Tasks List </h3> 
+    <button class="waves-effect waves-light btn blue darken-2" (click)="getAllTasks()">Refresh</button>
+    <br>
+    <br>
+
+    <div style="vertical-align: top; width:40%; display: inline-block; margin-right: 5px;" class="card-panel teal lighten-2" *ngFor="let task of all_tasks" >
+      <p>Title: {{ task.title }}</p>
+      <p>Description: {{ task.description }}</p>
+      <button class="btn yellow darken-2" (click)="editTask(task._id)">Edit</button>
+      <br>
+      <br>
+      <button class="btn red darken-2" (click)="deleteTask(task._id)">Delete</button>
+
+      <div class="card-panel yellow lighten-2" *ngIf="queried_task._id === task._id"  >
+          <h3>Edit Task</h3>
+          <form (submit)="onSubmitEdit(queried_task._id)">
+            <label for="title">Title</label>
+            <input type="text" name="editedTask.title" [(ngModel)]="newTask.title" />
+            <label for="description">Description</label>
+            <input type="text" name="editedTask.description" [(ngModel)]="newTask.description" />
+            <br>
+            <br>
+            <input class="btn teal darken-2" type="submit" value="Edit">
+          </form>
+      </div>
+    </div>
 </div>
 
 

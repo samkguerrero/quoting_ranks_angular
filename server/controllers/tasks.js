@@ -38,10 +38,10 @@ module.exports = {
       .then(data => res.json(data))
       .catch(err => res.json(err));
   },
-  
+
   updateTask: (req, res) => {
     const DATA = req.body;
-    Task.findOneAndUpdate({_id: id}, DATA, {runValidators:true, new:true})
+    Task.findOneAndUpdate({_id: req.params.id}, DATA, {runValidators:true, new:true})
       .then(data => res.json(data))
       .catch(err => res.json(err));
   }
