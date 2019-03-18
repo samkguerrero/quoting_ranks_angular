@@ -6,22 +6,22 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HttpService {
   constructor(private _http: HttpClient){
-    this.getTasks();
-    this.getTask('0');
+    this.getAllCakes();
+    this.getCake('0');
   }
-  getTasks(){
-      return this._http.get('/api/tasks');
+  getAllCakes(){
+      return this._http.get('/api/cakes');
   }
-  getTask(id: String){
-      return this._http.get(`/api/tasks/${id}`);
+  getCake(id: String){
+      return this._http.get(`/api/cakes/${id}`);
   }
-  addTask(newTask: any){
-    return this._http.post(`/api/tasks`, newTask)
+  createCake(newTask: any){
+    return this._http.post(`/api/cakes`, newTask)
   }
-  deleteTask(id: String){
-    return this._http.delete(`/api/tasks/${id}`)
+  deleteCake(id: String){
+    return this._http.delete(`/api/cakes/${id}`)
   }
-  updateTask(id: String, newTaskEdit: any){
-    return this._http.put(`/api/tasks/${id}`, newTaskEdit)
+  addRating(id: String, newRating: any){
+    return this._http.post(`/api/cakes/${id}`, newRating)
   }
 }

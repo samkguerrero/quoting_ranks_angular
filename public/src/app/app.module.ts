@@ -5,12 +5,12 @@ import { HttpService } from './http.service';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { EdittaskComponent } from './edittask/edittask.component';
+import { CakeComponent } from './cake/cake.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EdittaskComponent,
+    CakeComponent,
   ],
   imports: [
     BrowserModule,

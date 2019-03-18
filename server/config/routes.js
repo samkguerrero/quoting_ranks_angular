@@ -1,10 +1,10 @@
-const controllers = require("../controllers/tasks.js");
+const controllers = require("../controllers/cakes.js");
 
 module.exports = app => {
   app
-    .get('/api/tasks', controllers.getAllTasks)
-    .get('/api/tasks/:id', controllers.getTask)
-    .post('/api/tasks', controllers.create)
-    .put('/api/tasks/:id', controllers.updateTask)
-    .delete('/api/tasks/:id', controllers.deleteTask)
+    .get('/api/cakes', controllers.getAllCakes)
+    .get('/api/cakes/:id', controllers.getCake)
+    .post('/api/cakes', controllers.createCake)
+    .post('/api/cakes/:id', controllers.addRating)
+    .delete('/api/cakes/:id', controllers.deleteCake)
 }

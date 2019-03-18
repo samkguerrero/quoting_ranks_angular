@@ -10,47 +10,46 @@ import { InitialStylingValues } from '@angular/core/src/render3/interfaces/styli
 
 export class AppComponent {
 
-  title = 'Restful Tasks';
-  all_tasks: object = [];
-  queried_task: object = {};
-  newTask: any;
-  editedTask: any;
+  allCakes: object = [];
+  queriedCake: object = {};
+  newCake: any;
+  newRating: any;
 
   constructor(private _httpService: HttpService) {
+    _httpService.getAllCakes().subscribe(data => this.allCakes = data)
   }
 
   ngOnInit(){
-    this.newTask = {title: "", description: ""}
-    this.editedTask = {title: "", description: ""}
+    this.newCake = {baker: "", image: ""}
+    this.newRating = {rating: "", comment: ""}
   }
 
-  getAllTasks(): void { 
-    this._httpService.getTasks().subscribe(data => this.all_tasks = data)
+  getAllCakes(): void { 
+    this._httpService.getAllCakes().subscribe(data => this.allCakes = data)
   }
 
-  onSubmitCreate(){
-    let observable = this._httpService.addTask(this.newTask);
+  createCake(){
+    let observable = this._httpService.createCake(this.newCake);
     observable.subscribe(data => {
       console.log("Got data from post back", data);
-      this.newTask = {title: "", description: ""}
+      this.newCake = {baker: "", image: ""}
     })
   }
 
-  onSubmitEdit(id: String){
-    let observable = this._httpService.updateTask(id,this.newTask);
+  addRating(cakeGettingRating: string): void{
+    let observable = this._httpService.addRating(cakeGettingRating,this.newRating);
     observable.subscribe(data => {
-      this.newTask = {title: "", description: ""}
-      this.queried_task = {};
-      this.getAllTasks();
+      console.log("Got data from post back", data);
+      this.newRating = {rating: "", comment: ""}
     })
   }
 
-  deleteTask(id: String): void { 
-    this._httpService.deleteTask(id).subscribe(data => console.log("data from delete:", data))
+  deleteCake(id: String): void { 
+    this._httpService.deleteCake(id).subscribe(data => console.log("data from delete:", data))
   }
 
-  editTask(id: String): void { 
-    this._httpService.getTask(id).subscribe(data => {this.queried_task = data; this.editedTask = data })
+  getCake(id: String): void { 
+    this._httpService.getCake(id).subscribe(data => this.queriedCake = data)
   }
 
 }
