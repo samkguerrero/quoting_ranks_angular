@@ -1,2 +1,2 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/cakes', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/authors', { useNewUrlParser: true });

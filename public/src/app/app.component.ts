@@ -10,46 +10,32 @@ import { InitialStylingValues } from '@angular/core/src/render3/interfaces/styli
 
 export class AppComponent {
 
-  allCakes: object = [];
-  queriedCake: object = {};
+  allAuthors: object = [];
+  queriedAuthor: object = {};
   newCake: any;
-  newRating: any;
 
   constructor(private _httpService: HttpService) {
-    _httpService.getAllCakes().subscribe(data => this.allCakes = data)
+    _httpService.getAllAuthors().subscribe(data => this.allAuthors = data)
   }
 
   ngOnInit(){
-    this.newCake = {baker: "", image: ""}
-    this.newRating = {rating: "", comment: ""}
+    this.newCake = {name: ""}
   }
 
-  getAllCakes(): void { 
-    this._httpService.getAllCakes().subscribe(data => this.allCakes = data)
-  }
-
-  createCake(){
-    let observable = this._httpService.createCake(this.newCake);
+  createAuthor(){
+    let observable = this._httpService.createAuthor(this.newCake);
     observable.subscribe(data => {
       console.log("Got data from post back", data);
       this.newCake = {baker: "", image: ""}
     })
   }
 
-  addRating(cakeGettingRating: string): void{
-    let observable = this._httpService.addRating(cakeGettingRating,this.newRating);
-    observable.subscribe(data => {
-      console.log("Got data from post back", data);
-      this.newRating = {rating: "", comment: ""}
-    })
+  deleteAuthor(id: String): void { 
+    this._httpService.deleteAuthor(id).subscribe(data => console.log("data from delete:", data))
   }
 
-  deleteCake(id: String): void { 
-    this._httpService.deleteCake(id).subscribe(data => console.log("data from delete:", data))
-  }
-
-  getCake(id: String): void { 
-    this._httpService.getCake(id).subscribe(data => this.queriedCake = data)
+  getAuthor(id: String): void { 
+    this._httpService.getAuthor(id).subscribe(data => this.queriedAuthor = data)
   }
 
 }

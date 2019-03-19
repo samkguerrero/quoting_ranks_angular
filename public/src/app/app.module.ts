@@ -5,17 +5,24 @@ import { HttpService } from './http.service';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { CakeComponent } from './cake/cake.component';
+import { AppRoutingModule } from './app-routing.module';
+
+import { AuthorsComponent } from './authors/authors.component';
+import { EditauthorComponent } from './editauthor/editauthor.component';
+import { NewauthorComponent } from './newauthor/newauthor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CakeComponent,
+    AuthorsComponent,
+    EditauthorComponent,
+    NewauthorComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]

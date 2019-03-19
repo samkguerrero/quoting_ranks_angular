@@ -1,10 +1,10 @@
-const controllers = require("../controllers/cakes.js");
+const controllers = require("../controllers/authors.js");
 
 module.exports = app => {
   app
-    .get('/api/cakes', controllers.getAllCakes)
-    .get('/api/cakes/:id', controllers.getCake)
-    .post('/api/cakes', controllers.createCake)
-    .post('/api/cakes/:id', controllers.addRating)
-    .delete('/api/cakes/:id', controllers.deleteCake)
+    .get('/api/authors', controllers.getAllAuthors)
+    .get('/api/authors/:id', controllers.getAuthor)
+    .post('/api/authors', controllers.createAuthor)
+    .delete('/api/authors/:id', controllers.deleteAuthor)
+    .put('/api/authors/:id', controllers.updateAuthor)
 }

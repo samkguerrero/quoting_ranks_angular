@@ -1,0 +1,12 @@
+<a [routerLink]="['/']">Home</a>
+<p>Add a new author:</p>
+<div style="border: 1px solid black;">
+  <form (submit)="createAuthor()" style="padding: 20px">
+    <label for="name">Name:</label>
+    <input name="newAuthor.name" [(ngModel)]="newAuthor.name" type="text">
+    <br>
+    <button [routerLink]="['/']"  style="margin: 10px 10px 10px 10px;" class="btn cyan lighten-1">Cancel</button>
+    <button class="btn cyan lighten-1">Submit</button>
+  </form>
+</div>
+

@@ -3,48 +3,16 @@
 
 <div class="navbar-fixed">
     <nav>
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo">Rate My Cakes</a>
+        <div class="cyan lighten-1 nav-wrapper">
+            <a href="#" class="brand-logo">Favorite Authors</a>
         </div>
     </nav>
 </div>
 
 <div style="padding:20px">
-    <div class="row">
-
-      <div style="padding: 20px 15px; border: 2px solid #ee6e73; margin-right:2%" class="col s4">
-          <p>Submit a cake to be rated</p>
-          <hr style="border-color: #ee6e73">
-          <form (submit)="createCake()">
-            <label for="newCake.baker">Baker name:</label>
-            <input style="border: 2px solid #ee6e73" type="text" name="newCake.baker" [(ngModel)]="newCake.baker" />
-            <label for="newCake.image">Image url:</label>
-            <input style="border: 2px solid #ee6e73" type="text" name="newCake.image" [(ngModel)]="newCake.image" />
-            <input style="margin-top: 5px;" class="btn red lighten-1" type="submit" value="Submit">
-          </form>
-        </div>
-
-        <div style="height: 500px; overflow: scroll" class="col s7">
-            <div *ngFor="let cake of allCakes" >
-              <div class="row">
-                  <div class="col s5">
-                      <img (click)="getCake(cake._id)"  width="250px" height="250px" src="{{ cake.image }}" alt="Picture of a cake">
-                  </div>
-                  <div class="col s5">
-                      <form (submit)="addRating(cake._id)">
-                          <label for="rating">Rating <input type="number" name="newRating.rating" [(ngModel)]="newRating.rating"></label>
-                          <label for="comment">Comment<textarea name="newRating.comment" [(ngModel)]="newRating.comment" cols="30" rows="10"></textarea></label>
-                          <input style="margin-top: 8px" class="btn deep-orange lighten-1" type="submit" value="Rate!">
-                      </form>
-                  </div>
-              </div>
-              <hr style="border:2px solid #ee6e73">
-            </div>
-        </div>
+    <div class="container">
+        <router-outlet></router-outlet>
     </div>
-
-    <app-cake *ngIf="queriedCake.image" [queriedCake]='queriedCake'></app-cake>
-
 </div>
 
 
