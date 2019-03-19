@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthorsComponent } from './authors/authors.component';
 import { EditauthorComponent } from './editauthor/editauthor.component';
 import { NewauthorComponent } from './newauthor/newauthor.component';
+import { AuthorquotesComponent } from './authorquotes/authorquotes.component';
+import { NewquoteComponent } from './newquote/newquote.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { NewauthorComponent } from './newauthor/newauthor.component';
     AuthorsComponent,
     EditauthorComponent,
     NewauthorComponent,
+    AuthorquotesComponent,
+    NewquoteComponent,
   ],
   imports: [
     BrowserModule,

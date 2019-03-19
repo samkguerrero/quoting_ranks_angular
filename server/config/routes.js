@@ -7,4 +7,7 @@ module.exports = app => {
     .post('/api/authors', controllers.createAuthor)
     .delete('/api/authors/:id', controllers.deleteAuthor)
     .put('/api/authors/:id', controllers.updateAuthor)
+    .put('/api/authors/quotes/:id', controllers.addAuthorQuote)
+    .put('/api/authors/write/:id', controllers.updateAuthorQuote)
+    .post('/api/authors/write/:id', controllers.deleteAuthorQuote)
 }

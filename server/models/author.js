@@ -6,6 +6,9 @@ const AuthorSchema = new mongoose.Schema({
     type: String, 
     required: true, 
     minlength: 3
+  },
+  quotes: {
+    type: Array
   }
 }, {timestamps: true});
 
